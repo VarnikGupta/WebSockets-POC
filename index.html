@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Chat</title>
+</head>
+<body>
+  <ul id="messages"></ul>
+  <form id="form" action="">
+    <input id="username" autocomplete="off" placeholder="Enter username" />
+    <input id="roomInput" autocomplete="off" placeholder="Enter room name" />
+    <button type="button" id="joinButton">Join</button>
+  </form>
+
+  <script>
+    document.getElementById("joinButton").addEventListener("click", () => {
+      const username = document.getElementById("username").value.trim();
+      const roomName = document.getElementById("roomInput").value.trim();
+
+      if (username && roomName) {
+        // Save username to sessionStorage for access in room.html
+        sessionStorage.setItem("username", username);
+        window.location.href = `/room/${encodeURIComponent(roomName)}`;
+      } else {
+        alert("Please enter both a username and a room name");
+      }
+    });
+  </script>
+</body>
+</html>
